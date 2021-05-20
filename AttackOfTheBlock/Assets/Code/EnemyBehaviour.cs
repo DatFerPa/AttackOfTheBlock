@@ -18,7 +18,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collision.collider.tag.Equals("Player"))
         {
-            Debug.Log("Choque contra un menda collision 2d");
+            Debug.Log("Choque contra el player collision 2d");
+            Application.Quit();
         }
 
     }

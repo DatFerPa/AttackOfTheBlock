@@ -7,44 +7,36 @@ public class PlayerMovement : MonoBehaviour
 
     // Start is called before the first frame update
     private bool _isPlayerHitBarrier;
-
-    private float _heightMainCamera;
-    private float _widthMainCamera;
-    private Camera _mainCamera;
+    private BoundsAndCameraManager _boundsAndCameraManager;
 
 
     void Start()
-    {      
-        Cursor.visible = false;
-
-        _mainCamera = Camera.main;
-        updateCameraSizes();
+    {
+        _boundsAndCameraManager = GameObject.FindObjectOfType<BoundsAndCameraManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        updateCameraSizes();
-
 
         Debug.DrawLine(
-            new Vector3(_mainCamera.transform.position.x - (_widthMainCamera / 2), _mainCamera.transform.position.y + (_heightMainCamera / 2), 0),
-            new Vector3(_mainCamera.transform.position.x + (_widthMainCamera / 2), _mainCamera.transform.position.y + (_heightMainCamera / 2), 0)
+            new Vector3(_boundsAndCameraManager.mainCamera.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2), 0),
+            new Vector3(_boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2), 0)
             , Color.red);
 
         Debug.DrawLine(
-            new Vector3(_mainCamera.transform.position.x - (_widthMainCamera / 2), _mainCamera.transform.position.y - (_heightMainCamera / 2), 0),
-            new Vector3(_mainCamera.transform.position.x + (_widthMainCamera / 2), _mainCamera.transform.position.y - (_heightMainCamera / 2), 0)
+            new Vector3(_boundsAndCameraManager.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2), 0),
+            new Vector3(_boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2), 0)
             , Color.red);
 
         Debug.DrawLine(
-            new Vector3(_mainCamera.transform.position.x - (_widthMainCamera / 2), _mainCamera.transform.position.y + (_heightMainCamera / 2), 0),
-            new Vector3(_mainCamera.transform.position.x - (_widthMainCamera / 2), _mainCamera.transform.position.y - (_heightMainCamera / 2), 0)
+            new Vector3(_boundsAndCameraManager.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2), 0),
+            new Vector3(_boundsAndCameraManager.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2), 0)
             , Color.red);
 
         Debug.DrawLine(
-            new Vector3(_mainCamera.transform.position.x + (_widthMainCamera / 2), _mainCamera.transform.position.y + (_heightMainCamera / 2), 0),
-            new Vector3(_mainCamera.transform.position.x + (_widthMainCamera / 2), _mainCamera.transform.position.y - (_heightMainCamera / 2), 0)
+            new Vector3(_boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2), 0),
+            new Vector3(_boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2), 0)
             , Color.red);
     }
 
@@ -56,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
        * ya que al hacer la conversión de la posición del ratón, esta pilla la posición de camara, logicamente, al utilizar la cámara como el elemento 
        * desde el que saco las posiciones
        */
-        Vector3 mousePositionInGame = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePositionInGame = _boundsAndCameraManager.mainCamera.ScreenToWorldPoint(Input.mousePosition);
         mousePositionInGame.z = 0;
         if (isPointInsideBoundries(mousePositionInGame)||!this._isPlayerHitBarrier)
         {
@@ -72,10 +64,10 @@ public class PlayerMovement : MonoBehaviour
 
     bool isPointInsideBoundries(Vector3 newPositionForThePlayer)
     {
-        if (newPositionForThePlayer.x < _mainCamera.transform.position.x - (_widthMainCamera / 2)|| newPositionForThePlayer.x > _mainCamera.transform.position.x + (_widthMainCamera / 2))
+        if (newPositionForThePlayer.x < _boundsAndCameraManager.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2)|| newPositionForThePlayer.x > _boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2))
         {
             return false;
-        }else if (newPositionForThePlayer.y < _mainCamera.transform.position.y - (_heightMainCamera / 2) || newPositionForThePlayer.y > _mainCamera.transform.position.y + (_heightMainCamera / 2))
+        }else if (newPositionForThePlayer.y < _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2) || newPositionForThePlayer.y > _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2))
         {
             return false;
         }
@@ -89,7 +81,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.tag.Equals("Barrier"))
         {
-            Debug.Log("Choque contra una barrera collision 2d");
             _isPlayerHitBarrier = true;
         }
     }
@@ -98,16 +89,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.tag.Equals("Barrier"))
         {
-            Debug.Log("Sali de un choque contra una barrera collision 2d");
             _isPlayerHitBarrier = false;
         }
     }
 
-    private void updateCameraSizes()
-    {
-        _heightMainCamera = 2 * _mainCamera.orthographicSize;
-        _widthMainCamera = _heightMainCamera * _mainCamera.aspect;
-    }
 
 
 }
