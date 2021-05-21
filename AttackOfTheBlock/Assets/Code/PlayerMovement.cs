@@ -19,25 +19,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        Debug.DrawLine(
-            new Vector3(_boundsAndCameraManager.mainCamera.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2), 0),
-            new Vector3(_boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2), 0)
-            , Color.red);
-
-        Debug.DrawLine(
-            new Vector3(_boundsAndCameraManager.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2), 0),
-            new Vector3(_boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2), 0)
-            , Color.red);
-
-        Debug.DrawLine(
-            new Vector3(_boundsAndCameraManager.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2), 0),
-            new Vector3(_boundsAndCameraManager.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2), 0)
-            , Color.red);
-
-        Debug.DrawLine(
-            new Vector3(_boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2), 0),
-            new Vector3(_boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2), _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2), 0)
-            , Color.red);
     }
 
     private void FixedUpdate()
@@ -54,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         {
            //this.GetComponent<Rigidbody2D>().MovePosition(new Vector2(mousePositionInGame.x, mousePositionInGame.y));
             Vector2 positionPlayer = new Vector2(this.transform.position.x, this.transform.position.y);
-            this.GetComponent<Rigidbody2D>().MovePosition(Vector2.Lerp(positionPlayer,mousePositionInGame, 0.5f));
+            this.GetComponent<Rigidbody2D>().MovePosition(Vector2.Lerp(positionPlayer,mousePositionInGame, 0.05f));
         }
         else
         {
@@ -62,12 +43,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    bool isPointInsideBoundries(Vector3 newPositionForThePlayer)
+    bool isPointInsideBoundries(Vector3 pointToValidate)
     {
-        if (newPositionForThePlayer.x < _boundsAndCameraManager.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2)|| newPositionForThePlayer.x > _boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2))
+        if (pointToValidate.x < _boundsAndCameraManager.transform.position.x - (_boundsAndCameraManager.widthMainCamera / 2))
         {
             return false;
-        }else if (newPositionForThePlayer.y < _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2) || newPositionForThePlayer.y > _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2))
+        }else if (pointToValidate.x > _boundsAndCameraManager.transform.position.x + (_boundsAndCameraManager.widthMainCamera / 2))
+        {
+            return false;
+        }        
+        else if (pointToValidate.y < _boundsAndCameraManager.transform.position.y - (_boundsAndCameraManager.heightMainCamera / 2))
+        {
+            return false;
+        }
+        else if (pointToValidate.y > _boundsAndCameraManager.transform.position.y + (_boundsAndCameraManager.heightMainCamera / 2))
         {
             return false;
         }
@@ -81,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.tag.Equals("Barrier"))
         {
+            Debug.Log("he entrado de la colisión");
             _isPlayerHitBarrier = true;
         }
     }
@@ -89,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.tag.Equals("Barrier"))
         {
+            Debug.Log("he salido de la colisión");
             _isPlayerHitBarrier = false;
         }
     }
