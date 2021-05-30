@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8511461052102319349}
   - component: {fileID: 1794067675241590419}
   - component: {fileID: 5263767509852962402}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3002639516592366932}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 17ff782a94f25fe4998e61904d04f918, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -147,7 +147,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 17ff782a94f25fe4998e61904d04f918, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -164,4 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2d789fb975b074db9030670e81e74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundsVelocity: 0
+  velocity: 100
+  gameManager: {fileID: 0}
+  enemyPrefab: {fileID: 3002639516592366932}

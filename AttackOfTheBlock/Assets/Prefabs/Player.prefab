@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3777016911214681625}
   - component: {fileID: 3777016911214681624}
   - component: {fileID: 423121994}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fee4992b59466e4aacf1a826094cd41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  playerLives: 3
 --- !u!212 &3777016911214681620
 SpriteRenderer:
   m_ObjectHideFlags: 0
