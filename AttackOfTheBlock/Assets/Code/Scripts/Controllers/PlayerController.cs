@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject gameManager;
-    public int playerLives;
-
     private bool _isPlayerHitBarrier;
     private BoundsAndCameraManager _boundsAndCameraManager;
-
+    private PlayerBehaviour _playerBehaviour;
 
     void Start()
     {
         //Buscamos el manager de la cámara para poder acceder a los parámetros de la cámara en cualquier momento
         _boundsAndCameraManager = GameObject.FindObjectOfType<BoundsAndCameraManager>();
-        //¿Plantear el manager como un singleton? Lo más cómodo posiblemente
-    }
+        _playerBehaviour = this.GetComponent<PlayerBehaviour>();
+    }   
 
     private void FixedUpdate()
+    {
+        if (_playerBehaviour.playerLives>0)
+        {
+            MovePlayer();
+        }
+    }
+
+
+    private void MovePlayer()
     {
         /*
        * ScrrenToWorldPoint transforma un punto de la pantalla en un punto en el espacio de juego
@@ -26,10 +32,10 @@ public class PlayerController : MonoBehaviour
        */
         Vector3 mousePositionInGame = _boundsAndCameraManager.mainCamera.ScreenToWorldPoint(Input.mousePosition);
         mousePositionInGame.z = 0;
-        if (_boundsAndCameraManager.isPointInsideBoundries(mousePositionInGame)||!this._isPlayerHitBarrier)
+        if (_boundsAndCameraManager.isPointInsideBoundries(mousePositionInGame) || !this._isPlayerHitBarrier)
         {
             Vector2 positionPlayer = new Vector2(this.transform.position.x, this.transform.position.y);
-            this.GetComponent<Rigidbody2D>().MovePosition(Vector2.Lerp(positionPlayer,mousePositionInGame, 0.05f));
+            this.GetComponent<Rigidbody2D>().MovePosition(Vector2.Lerp(positionPlayer, mousePositionInGame, 0.05f));
         }
     }
 
@@ -49,15 +55,6 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.tag.Equals("Barrier"))
         {
             _isPlayerHitBarrier = false;
-        }
-    }
-
-    public void reducePlayerLive()
-    {
-        playerLives--;
-        if (playerLives <= 0)
-        {
-            gameManager.GetComponent<GameManager>().finishGame();
         }
     }
 }

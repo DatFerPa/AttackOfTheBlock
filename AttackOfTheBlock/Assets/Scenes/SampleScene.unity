@@ -133,11 +133,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3777016911214681622, guid: bce9d6c1875c056498957b978a214a34,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 839686113}
     - target: {fileID: 3777016911214681623, guid: bce9d6c1875c056498957b978a214a34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -192,6 +187,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878926674873197751, guid: bce9d6c1875c056498957b978a214a34,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 839686113}
+    - target: {fileID: 5878926674873197751, guid: bce9d6c1875c056498957b978a214a34,
+        type: 3}
+      propertyPath: playerLives
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bce9d6c1875c056498957b978a214a34, type: 3}
@@ -289,6 +294,7 @@ GameObject:
   - component: {fileID: 839686115}
   - component: {fileID: 839686114}
   - component: {fileID: 839686116}
+  - component: {fileID: 839686117}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -335,6 +341,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ece0654f375b3443b340eff7dc8dad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &839686117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839686113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4693d59da0709804ea77cd4232d04db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1104145475

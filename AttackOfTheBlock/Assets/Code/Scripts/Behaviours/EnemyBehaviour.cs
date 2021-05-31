@@ -7,10 +7,12 @@ public class EnemyBehaviour : MonoBehaviour
     public int velocity;
     public GameObject gameManager;
     public GameObject enemyPrefab;
+    private AudioSource _audioSource;
 
     void Start()
     {
         generateRandomForce();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     /**
@@ -38,26 +40,19 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag.Equals("Enemy"))
+        if (collision.collider.tag.Equals("Player"))
         {
-            /*
-             * 
-             * 
-             */
-            Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
-            Debug.Log("Enemigo colisiona con enemigo");
-
-
+            Debug.Log("colisione contra el playero");
+            collision.gameObject.GetComponent<PlayerBehaviour>().hitPlayer();
         }
-
+        else
+        {
+            _audioSource.Play();
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.tag.Equals("Player"))
-        {
-            Debug.Log("Choque contra un juegador");
-            collision.gameObject.GetComponent<PlayerController>().reducePlayerLive();
-        }
+        
     }
 }
