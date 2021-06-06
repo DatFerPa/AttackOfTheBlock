@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3777016911214681625}
   - component: {fileID: 423121994}
   - component: {fileID: 1402948517613007748}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PowerUpMoreLive
-  m_TagString: Player
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,10 +70,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1632322495
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f095be8052f73c14bb8d8a5ca75d05a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f7b34b5329715e4f8a672cab1ba20d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    oldSize: {x: 2.54, y: 2.54}
     newSize: {x: 0.71, y: 0.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -122,7 +122,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1402948517613007748}
-        m_MethodName: getPlayerOneLive
+        m_MethodName: getPlayerOneLife
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -157,3 +157,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  liveTime: 30

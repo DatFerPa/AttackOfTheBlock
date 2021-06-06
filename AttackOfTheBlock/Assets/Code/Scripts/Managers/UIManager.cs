@@ -12,11 +12,7 @@ public class UIManager : MonoBehaviour
     public string nameLayoutHearts;
 
 
-    private List<GameObject> _prefabHearts;
-    void Start()
-    {
-        _prefabHearts = new List<GameObject>();
-    }
+    private List<GameObject> _prefabHearts = new List<GameObject>();
 
     public void generateHearts(int cuantityOfHearts)
     {

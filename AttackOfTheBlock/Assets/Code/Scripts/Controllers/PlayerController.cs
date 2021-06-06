@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private PlayerBehaviour _playerBehaviour;
 
     void Start()
-    {
+    {      
         //Buscamos el manager de la cámara para poder acceder a los parámetros de la cámara en cualquier momento
         _boundsAndCameraManager = GameObject.FindObjectOfType<BoundsAndCameraManager>();
         _playerBehaviour = this.GetComponent<PlayerBehaviour>();
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_playerBehaviour.playerActualLives > 0)
+        if (!_playerBehaviour.isPlayerDeath)
         {
             MovePlayer();
         }

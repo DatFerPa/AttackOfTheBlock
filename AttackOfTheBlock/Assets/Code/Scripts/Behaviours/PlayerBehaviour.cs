@@ -4,24 +4,34 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public int playerMaxLives;
+    //Propiedades del jugador
+    public int playerMaxLifes;
     public GameObject gameManager;
-    public float inmunityTime;
+    public float inmunityTimeWhenHitted;
+    public AudioClip soundPlayerDeath;
+    public AudioClip soundPlayerHitted;
 
     private bool _isPlayerInInmunityEffect;
     private Animator _animator;
     private float _time2FinishInmunity;
     private AudioSource _audioSource;
-    private int _playerActualLives;
+    private int _playerActualLifes;
+    private bool _isPLayerDeath;
+
 
     public int playerActualLives
     {
-        get => _playerActualLives;
+        get => _playerActualLifes;
+    }
+
+    public bool isPlayerDeath
+    {
+        get => _isPLayerDeath;
     }
 
     private void Start()
     {
-        _playerActualLives = playerMaxLives;
+        _playerActualLifes = playerMaxLifes;
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         setLivesToUI();
@@ -33,7 +43,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             changeInmunityToPlayer(false);
         }
-        if (_playerActualLives <= 0 && !_audioSource.isPlaying )
+        if (_isPLayerDeath && !_audioSource.isPlaying )
         {
             gameManager.GetComponent<GameManager>().finishGame();
         }
@@ -41,17 +51,27 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void setLivesToUI()
     {
-        gameManager.GetComponent<UIManager>().generateHearts(playerMaxLives);
+        gameManager.GetComponent<UIManager>().generateHearts(playerMaxLifes);
     }
 
 
-    private void reducePlayerLive()
+    private void reducePlayerLife()
     {
-        _playerActualLives--;
-        gameManager.GetComponent<UIManager>().fillInOutheart(_playerActualLives, false);
-        if (_playerActualLives <= 0)
+        _playerActualLifes--;
+        gameManager.GetComponent<UIManager>().fillInOutheart(_playerActualLifes, false);
+        if (_playerActualLifes <= 0)
         {
+            _isPLayerDeath = true;
+            _audioSource.clip = soundPlayerDeath;
             _audioSource.Play();
+        }
+    }
+    public void getOneMoreLife()
+    {
+        if (_playerActualLifes < playerMaxLifes)
+        {
+            _playerActualLifes++;
+            gameManager.GetComponent<UIManager>().fillInOutheart(_playerActualLifes - 1, true);
         }
     }
 
@@ -59,21 +79,15 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (!this._isPlayerInInmunityEffect)
         {
-            this._time2FinishInmunity = Time.time + inmunityTime;
+            _audioSource.clip = soundPlayerHitted;
+            _audioSource.Play();
+            this._time2FinishInmunity = Time.time + inmunityTimeWhenHitted;
             changeInmunityToPlayer(true);
-            reducePlayerLive();
+            reducePlayerLife();
         }
     }
 
-    public void getOneMoreLive()
-    {
-        if (_playerActualLives<playerMaxLives)
-        {
-            _playerActualLives++;
-            gameManager.GetComponent<UIManager>().fillInOutheart(_playerActualLives-1, true);
-        }
-    }
-
+    
     private void changeInmunityToPlayer(bool isInmunity)
     {
         this._isPlayerInInmunityEffect = isInmunity;

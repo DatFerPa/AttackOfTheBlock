@@ -11,11 +11,13 @@ GameObject:
   - component: {fileID: 3777016911214681623}
   - component: {fileID: 3777016911214681622}
   - component: {fileID: 5878926674873197751}
+  - component: {fileID: 4875383459661492405}
   - component: {fileID: 3777016911214681620}
   - component: {fileID: 3777016911214681625}
   - component: {fileID: 3777016911214681624}
   - component: {fileID: 423121994}
   - component: {fileID: 1819332568}
+  - component: {fileID: 1940694355}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -61,9 +63,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e729231ab9395142bd2b46c72f2d89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLives: 1
+  playerMaxLifes: 5
   gameManager: {fileID: 0}
-  inmunityTime: 2
+  inmunityTimeWhenHitted: 3
+  soundPlayerDeath: {fileID: 8300000, guid: ddc9f3105126e6d45951586bdffb58b9, type: 3}
+  soundPlayerHitted: {fileID: 8300000, guid: 8bae8b65a7f1a3a47944bb99eeaa25c5, type: 3}
+--- !u!114 &4875383459661492405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3777016911214681621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906adf0e55e7f6d44ba9573bf2c0922d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToFinishPowerUps: 5
+  playerOriginalScale: {x: 1, y: 1, z: 1}
 --- !u!212 &3777016911214681620
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -198,7 +216,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 26
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -276,3 +294,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1940694355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3777016911214681621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906adf0e55e7f6d44ba9573bf2c0922d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToFinishPowerUps: 0
+  playerOriginalScale: {x: 0, y: 0, z: 0}

@@ -1,23 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
-        Cursor.visible = false;
-    }
+        if (SceneManager.GetActiveScene().name.Equals("SampleScene"))
+        {
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.visible = true;
+        }
 
-    void Update()
+
+    }
+    public void quitGame()
     {
-        
+        Application.Quit();
     }
 
     public void finishGame()
     {
-        Debug.Break();
-        Application.Quit();
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void enterGame()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 
 }
