@@ -36,23 +36,17 @@ public class EnemyBehaviour : MonoBehaviour
                 this.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.velocity, this.velocity));
                 break;
         }
-    }
+    }  
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag.Equals("Player"))
         {
-            Debug.Log("colisione contra el playero");
             collision.gameObject.GetComponent<PlayerBehaviour>().hitPlayer();
         }
         else
         {
             _audioSource.Play();
         }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        
     }
 }

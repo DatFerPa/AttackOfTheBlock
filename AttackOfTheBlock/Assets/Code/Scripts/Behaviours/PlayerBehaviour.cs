@@ -4,37 +4,52 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public int playerLives;
+    public int playerMaxLives;
     public GameObject gameManager;
     public float inmunityTime;
 
-    private bool _isPlayerInHittedEffect;
+    private bool _isPlayerInInmunityEffect;
     private Animator _animator;
     private float _time2FinishInmunity;
     private AudioSource _audioSource;
+    private int _playerActualLives;
+
+    public int playerActualLives
+    {
+        get => _playerActualLives;
+    }
 
     private void Start()
     {
+        _playerActualLives = playerMaxLives;
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        setLivesToUI();
     }
 
     void Update()
     {
-        if (this._isPlayerInHittedEffect && this._time2FinishInmunity < Time.time)
+        if (this._isPlayerInInmunityEffect && this._time2FinishInmunity < Time.time)
         {
-            quitInmunityToPlayer();
+            changeInmunityToPlayer(false);
         }
-        if (!_audioSource.isPlaying && playerLives<=0)
+        if (_playerActualLives <= 0 && !_audioSource.isPlaying )
         {
             gameManager.GetComponent<GameManager>().finishGame();
         }
     }
 
+    private void setLivesToUI()
+    {
+        gameManager.GetComponent<UIManager>().generateHearts(playerMaxLives);
+    }
+
+
     private void reducePlayerLive()
     {
-        playerLives--;
-        if (playerLives <= 0)
+        _playerActualLives--;
+        gameManager.GetComponent<UIManager>().fillInOutheart(_playerActualLives, false);
+        if (_playerActualLives <= 0)
         {
             _audioSource.Play();
         }
@@ -42,20 +57,26 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void hitPlayer()
     {
-        if (!this._isPlayerInHittedEffect)
+        if (!this._isPlayerInInmunityEffect)
         {
-            this._time2FinishInmunity += Time.time + inmunityTime;
-            this._isPlayerInHittedEffect = true;
-            _animator.SetBool("isHitted",true);
+            this._time2FinishInmunity = Time.time + inmunityTime;
+            changeInmunityToPlayer(true);
             reducePlayerLive();
         }
     }
 
-    private void quitInmunityToPlayer()
+    public void getOneMoreLive()
     {
-        this._isPlayerInHittedEffect = false;
-        _animator.SetBool("isHitted", false);
+        if (_playerActualLives<playerMaxLives)
+        {
+            _playerActualLives++;
+            gameManager.GetComponent<UIManager>().fillInOutheart(_playerActualLives-1, true);
+        }
     }
 
-
+    private void changeInmunityToPlayer(bool isInmunity)
+    {
+        this._isPlayerInInmunityEffect = isInmunity;
+        _animator.SetBool("isHitted", isInmunity);
+    }
 }

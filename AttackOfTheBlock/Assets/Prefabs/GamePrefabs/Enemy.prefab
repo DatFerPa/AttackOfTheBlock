@@ -63,7 +63,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0e58fd914ffc180409b1430f6dd17bc2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.463
+  m_Volume: 0.121
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -241,7 +241,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.44, y: 0.48}
+  m_Size: {x: 0.6, y: 0.48}
   m_EdgeRadius: 0
 --- !u!50 &1794067675241590419
 Rigidbody2D:

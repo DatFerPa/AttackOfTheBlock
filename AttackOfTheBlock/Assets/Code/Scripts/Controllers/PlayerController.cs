@@ -17,12 +17,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_playerBehaviour.playerLives>0)
+        if (_playerBehaviour.playerActualLives > 0)
         {
             MovePlayer();
         }
     }
-
 
     private void MovePlayer()
     {
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
             this.GetComponent<Rigidbody2D>().MovePosition(Vector2.Lerp(positionPlayer, mousePositionInGame, 0.05f));
         }
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
