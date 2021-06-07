@@ -46,7 +46,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else
         {
-            //_audioSource.Play();
+            _audioSource.Play();
         }
     }
 }

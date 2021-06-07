@@ -49,12 +49,17 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    /**
+     * <summary>Función que se encarga de pasarle a ala interfaz la vantidad de vidas de las que dispone el jugador</summary>
+     */
     private void setLivesToUI()
     {
         gameManager.GetComponent<UIManager>().generateHearts(playerMaxLifes);
     }
 
-
+    /**
+     * <summary>Función que se encarga de disminuir la vida del jugador. En caso de que la vida llegue a cero, finaliza la aprtida</summary>
+     */
     private void reducePlayerLife()
     {
         _playerActualLifes--;
@@ -66,6 +71,10 @@ public class PlayerBehaviour : MonoBehaviour
             _audioSource.Play();
         }
     }
+
+    /**
+     * <summary>Función que se encarga de sumanr una vida a la vida actual. La vida actual nunca supera a la vida máxima</summary>
+     */
     public void getOneMoreLife()
     {
         if (_playerActualLifes < playerMaxLifes)
@@ -75,6 +84,9 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    /**
+     * <summary>Función que se encarga de realizar las acciones resultantes cuando un enemigo golpea al jugador</summary>
+     */
     public void hitPlayer()
     {
         if (!this._isPlayerInInmunityEffect)
@@ -87,7 +99,10 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    
+    /**
+     * <summary>Función que se encarga de activar o desactivar la inmunidad del jugador</summary>
+     * <param name="isInmunity">valor para activar o desactivar la inmunidad</param>
+     */
     private void changeInmunityToPlayer(bool isInmunity)
     {
         this._isPlayerInInmunityEffect = isInmunity;

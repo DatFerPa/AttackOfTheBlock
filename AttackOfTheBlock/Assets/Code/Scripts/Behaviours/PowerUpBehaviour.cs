@@ -35,12 +35,16 @@ public class PowerUpBehaviour : MonoBehaviour
             this._isUsed = true;
         }
     }
-
+    /**
+     * <summary>Función que se encarga de darle al jugador una vida extracuando este impacta con el power up</summary>
+     */
     public void getPlayerOneLife()
     {
         GameObject.Find("Player").GetComponent<PlayerBehaviour>().getOneMoreLife();
     }
-
+    /**
+     * <summary>Función que se encargo de reducir el tamaño del jugador cuando el power up impacta con el jugador</summary>
+     */
     public void playerSizeDown()
     {
         GameObject player = GameObject.Find("Player");

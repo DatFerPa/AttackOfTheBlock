@@ -22,7 +22,9 @@ public class PlayerController : MonoBehaviour
             MovePlayer();
         }
     }
-
+    /**
+     * <summary>Función que se encarga de desplazar al jugador en función de la posición del cursor del ratón</summary>
+     */
     private void MovePlayer()
     {
         /*

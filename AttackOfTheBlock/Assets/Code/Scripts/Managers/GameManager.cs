@@ -18,16 +18,23 @@ public class GameManager : MonoBehaviour
 
 
     }
+    /**
+     * <sumamry>Función que se encarga de quitar el juego</sumamry>
+     */
     public void quitGame()
     {
         Application.Quit();
     }
-
+    /**
+     * <sumamry>Función que se encarga de finalizar la partida</sumamry>
+     */
     public void finishGame()
     {
         SceneManager.LoadScene("MenuScene");
     }
-
+    /**
+     * <sumamry>Función que se encarga de empezar el juego</sumamry>
+     */
     public void enterGame()
     {
         SceneManager.LoadScene("SampleScene");
