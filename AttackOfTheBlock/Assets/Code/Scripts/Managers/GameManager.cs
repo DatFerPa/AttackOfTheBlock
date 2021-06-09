@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private void Start()
     {
+        Time.timeScale = 1;
         if (SceneManager.GetActiveScene().name.Equals("SampleScene"))
         {
             Cursor.visible = false;
@@ -38,6 +39,13 @@ public class GameManager : MonoBehaviour
     public void enterGame()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+    /**
+     * <summary>Función que se encarga de carga la escena del menu principal</summary>
+     */
+    public void goToMainMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 
 }
