@@ -9,6 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     public GameObject enemyPrefab;
     private AudioSource _audioSource;
 
+
     void Start()
     {
         generateRandomForce();

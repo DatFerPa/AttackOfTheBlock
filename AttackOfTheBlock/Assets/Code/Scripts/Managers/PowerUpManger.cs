@@ -34,7 +34,6 @@ public class PowerUpManger : MonoBehaviour
     {
         int powerUpIndex = Random.Range(0, powerUpsToSpawn.Count);
         Vector2 spawnPoint = getSpawnPoint();
-        Debug.Log(spawnPoint);
         GameObject powerUpSpawned = Instantiate(powerUpsToSpawn[powerUpIndex], new Vector3(spawnPoint.x, spawnPoint.y, 0), Quaternion.identity ,parentToSpawnPowerUps.transform);
         _powerUpsSpawned.Add(powerUpSpawned);
         powerUpSpawned.GetComponent<Rigidbody2D>().AddForce(getDirectionToCenter(spawnPoint)*movementForceForPowerUps);
@@ -72,7 +71,7 @@ public class PowerUpManger : MonoBehaviour
     }
 
     /**
-     * <summary>Función que se encarga de eleiminar todos los power ups que estan listos para ser eliminados.</summary>
+     * <summary>Función que se encarga de eliminar todos los power ups que estan listos para ser eliminados.</summary>
      */
     private void destroyPowerUpsUsed()
     {

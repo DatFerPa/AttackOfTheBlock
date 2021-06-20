@@ -16,9 +16,14 @@ public class GameManager : MonoBehaviour
         {
             Cursor.visible = true;
         }
-
-
     }
+
+    private void Update()
+    {
+        
+    }
+
+
     /**
      * <sumamry>Función que se encarga de quitar el juego</sumamry>
      */
@@ -27,12 +32,21 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
     /**
-     * <sumamry>Función que se encarga de finalizar la partida</sumamry>
+     * <sumamry>Función que se encarga de finalizar la partida y cargar el menú de derrota</sumamry>
      */
     public void finishGame()
     {
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene("MenuGameOver");
     }
+    /**
+     * <sumamry>Función que se encarga de finalizar la partida y cargar
+     *  el menú de victoria</sumamry>
+     */
+    public void winGame()
+    {
+        SceneManager.LoadScene("MenuWin");
+    }
+
     /**
      * <sumamry>Función que se encarga de empezar el juego</sumamry>
      */
@@ -47,5 +61,8 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MenuScene");
     }
+
+
+
 
 }

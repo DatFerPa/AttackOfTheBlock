@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 423121994}
   - component: {fileID: 1819332568}
   - component: {fileID: 1940694355}
+  - component: {fileID: 1507731335711101587}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -308,3 +309,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToFinishPowerUps: 0
   playerOriginalScale: {x: 0, y: 0, z: 0}
+--- !u!114 &1507731335711101587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3777016911214681621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4896ff71ec03a459e6770f7fff67a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileToShoot: {fileID: 5636350773392430754, guid: bf9c0af07e28caf48881757cf3805d69,
+    type: 3}
+  timeBetweenShoots: 2
