@@ -18,12 +18,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-    }
-
-
     /**
      * <sumamry>Función que se encarga de quitar el juego</sumamry>
      */

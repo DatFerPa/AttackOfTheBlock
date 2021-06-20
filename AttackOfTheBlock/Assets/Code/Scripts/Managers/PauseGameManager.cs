@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class PauseGameManager : MonoBehaviour
 {
-
     public Canvas pauseMenu;
     private bool _isGamepaused;
-    private bool _isPauseMenuDisplayed;
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -24,19 +20,11 @@ public class PauseGameManager : MonoBehaviour
         {
             pauseUnpauseGame();
         }
-
-        if (_isGamepaused && !_isPauseMenuDisplayed)
-        {
-            displayPauseMenu();
-        }
     }
-
-    private void displayPauseMenu()
-    {
-        this._isPauseMenuDisplayed = true;
-    }
-
-
+ 
+    /**
+     * <summary>Función que se encarga de pausar y resumir el tiempo de juego además de mostrar y ocultar el menu de pausa</summary>
+     */
     public void pauseUnpauseGame()
     {
         if (!_isGamepaused)
@@ -56,7 +44,10 @@ public class PauseGameManager : MonoBehaviour
     }
 
 
-
+    /**
+     * <summary>Función que se encarga de mostrar u ocultar el menú de pausa</summary>
+     * <param name="showPauseMenu">Booleano que marca si el menú de pausa se va a ocultar o se va a mostrar</param>
+     */
     private void showHidePauseMenu(bool showPauseMenu)
     {
         pauseMenu.gameObject.SetActive(showPauseMenu);

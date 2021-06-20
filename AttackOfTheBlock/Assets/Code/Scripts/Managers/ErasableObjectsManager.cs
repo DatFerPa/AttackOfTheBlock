@@ -14,11 +14,13 @@ public class ErasableObjectsManager : MonoBehaviour
         _enemies = (GameObject.FindGameObjectsWithTag("Enemy")).ToList();
         if (_enemies.Count <= 0)
         {
-            Debug.Log("no quedan enemigos");
             GetComponent<GameManager>().winGame();
         }
     }
-    
+
+    /**
+     * <summary>Función que se encarga de destruir todos los objetos que se encuentran en la lista de objetos a destruir _erasableObjects</summary>
+     */
     private void destroyObjects()
     {
         foreach(GameObject gameObjectToDestroy in _erasableObjects)
@@ -28,6 +30,9 @@ public class ErasableObjectsManager : MonoBehaviour
         _erasableObjects.Clear();
     }
 
+    /**
+     * <summary>Función que se encarga de añadir objetos a la lista de objetos a destruir _erasableObjects</summary>
+     */
     public void addErasableObject(GameObject erasableToAdd)
     {
         _erasableObjects.Add(erasableToAdd);

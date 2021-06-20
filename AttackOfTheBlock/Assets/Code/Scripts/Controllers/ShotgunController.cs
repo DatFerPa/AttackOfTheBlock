@@ -21,7 +21,10 @@ public class ShotgunController : MonoBehaviour
             directionToShoot();
         }
     }
-
+    /**
+     * <summary>Función que se encarga de definir la dirección 
+     * a la que se lanzará el projectil cuando se pulse una de las 4 teclas definidas</summary>
+     */
     private void directionToShoot()
     {
         if (Input.GetKeyDown(KeyCode.W))
@@ -42,7 +45,10 @@ public class ShotgunController : MonoBehaviour
         }
     }
 
-
+    /**
+     * <summary>Función que se encarga de lanzar un proyectil con una dirección determinada</summary>
+     * <param name="directionToShoot">Vector2 con la dirección que va a seguir el proyectil</param>
+     */
     private void shootProjectile(Vector2 directionToShoot)
     {
         Vector3 posicionSpawn = this.transform.position;
